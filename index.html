@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRAIN//SPARK - Knowledge Challenge</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Noise Texture Overlay -->
+    <div class="noise-overlay"></div>
+    
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="nav-logo">
+            <span class="logo-bracket">[</span>
+            <span class="logo-text">BRAIN//SPARK</span>
+            <span class="logo-bracket">]</span>
+        </div>
+        <div class="nav-links">
+            <button class="nav-link active" data-section="welcomeSection">HOME</button>
+            <button class="nav-link" data-section="dashboardSection">HISTORY</button>
+        </div>
+        <div class="nav-score" id="navScore">
+            <div class="score-label">TOTAL SCORE</div>
+            <div class="score-value">0000</div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="main-container">
+        
+        <!-- Welcome Section -->
+        <section class="section active" id="welcomeSection">
+            <div class="hero">
+                <div class="hero-badge">EST. 2026</div>
+                <h1 class="hero-title">
+                    <span class="title-line">TEST YOUR</span>
+                    <span class="title-line title-emphasis">KNOWLEDGE</span>
+                    <span class="title-line">BOUNDARIES</span>
+                </h1>
+                <div class="hero-subtitle">
+                    <div class="subtitle-number">///01</div>
+                    <p>Select your battlefield. Prove your expertise. Challenge yourself across multiple domains of human knowledge.</p>
+                </div>
+            </div>
+
+            <div class="category-grid">
+                <div class="category-card" data-category="technology">
+                    <div class="card-number">01</div>
+                    <div class="card-icon">⚡</div>
+                    <h3 class="card-title">TECHNOLOGY</h3>
+                    <p class="card-desc">Digital evolution & innovation</p>
+                    <div class="card-questions">10 Questions</div>
+                </div>
+
+                <div class="category-card" data-category="science">
+                    <div class="card-number">02</div>
+                    <div class="card-icon">🔬</div>
+                    <h3 class="card-title">SCIENCE</h3>
+                    <p class="card-desc">Natural laws & discoveries</p>
+                    <div class="card-questions">10 Questions</div>
+                </div>
+
+                <div class="category-card" data-category="arts">
+                    <div class="card-number">03</div>
+                    <div class="card-icon">🎨</div>
+                    <h3 class="card-title">ARTS & CULTURE</h3>
+                    <p class="card-desc">Creative human expression</p>
+                    <div class="card-questions">10 Questions</div>
+                </div>
+
+                <div class="category-card" data-category="history">
+                    <div class="card-number">04</div>
+                    <div class="card-icon">📜</div>
+                    <h3 class="card-title">HISTORY</h3>
+                    <p class="card-desc">Past events & civilizations</p>
+                    <div class="card-questions">10 Questions</div>
+                </div>
+
+                <div class="category-card" data-category="geography">
+                    <div class="card-number">05</div>
+                    <div class="card-icon">🌍</div>
+                    <h3 class="card-title">GEOGRAPHY</h3>
+                    <p class="card-desc">Earth's landscapes & places</p>
+                    <div class="card-questions">10 Questions</div>
+                </div>
+
+                <div class="category-card" data-category="sports">
+                    <div class="card-number">06</div>
+                    <div class="card-icon">⚽</div>
+                    <h3 class="card-title">SPORTS</h3>
+                    <p class="card-desc">Athletic achievements & records</p>
+                    <div class="card-questions">10 Questions</div>
+                </div>
+            </div>
+
+            <button class="start-button" id="startButton" disabled>
+                <span class="button-text">BEGIN CHALLENGE</span>
+                <span class="button-arrow">→</span>
+            </button>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section class="section" id="dashboardSection">
+            <div class="dashboard-container">
+                <div class="dashboard-header">
+                    <div>
+                        <div class="results-badge">YOUR HISTORY</div>
+                        <h2 class="dashboard-title">PREVIOUS RESULTS</h2>
+                        <p class="dashboard-subtitle">Track your progress and performance over time</p>
+                    </div>
+                    <button class="action-button secondary" id="clearHistoryBtn">
+                        <span>CLEAR HISTORY</span>
+                    </button>
+                </div>
+
+                <div class="stats-overview">
+                    <div class="overview-card">
+                        <div class="overview-number" id="totalQuizzes">0</div>
+                        <div class="overview-label">TOTAL QUIZZES</div>
+                    </div>
+                    <div class="overview-card">
+                        <div class="overview-number" id="totalPoints">0000</div>
+                        <div class="overview-label">TOTAL POINTS</div>
+                    </div>
+                    <div class="overview-card">
+                        <div class="overview-number" id="avgAccuracy">0%</div>
+                        <div class="overview-label">AVG ACCURACY</div>
+                    </div>
+                    <div class="overview-card">
+                        <div class="overview-number" id="bestCategory">—</div>
+                        <div class="overview-label">BEST CATEGORY</div>
+                    </div>
+                </div>
+
+                <div class="history-list" id="historyList">
+                    <!-- History items will be inserted here -->
+                </div>
+
+                <div class="empty-state" id="emptyState">
+                    <div class="empty-icon">📊</div>
+                    <h3>NO QUIZ HISTORY YET</h3>
+                    <p>Complete a quiz to see your results here</p>
+                    <button class="action-button primary" onclick="document.querySelector('[data-section=welcomeSection]').click()">
+                        <span>START FIRST QUIZ</span>
+                        <span class="button-arrow">→</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section class="section" id="quizSection">
+            <div class="quiz-header">
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>PROGRESS</span>
+                        <span id="progressText">01/10</span>
+                    </div>
+                    <div class="progress-track">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                </div>
+                <div class="quiz-score">
+                    <div class="score-label">CURRENT SCORE</div>
+                    <div class="score-number" id="quizScore">0000</div>
+                </div>
+            </div>
+
+            <div class="question-container">
+                <div class="question-meta">
+                    <span class="question-category" id="questionCategory">TECHNOLOGY</span>
+                    <span class="question-divider">///</span>
+                    <span class="question-number" id="questionNumber">QUESTION 01</span>
+                </div>
+                
+                <h2 class="question-text" id="questionText"></h2>
+
+                <div class="answers-grid" id="answersGrid"></div>
+            </div>
+
+            <div class="quiz-actions">
+                <button class="action-button secondary" id="skipButton">
+                    <span>SKIP</span>
+                </button>
+                <button class="action-button primary" id="submitButton" disabled>
+                    <span>SUBMIT ANSWER</span>
+                    <span class="button-arrow">→</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section class="section" id="resultsSection">
+            <div class="results-container">
+                <div class="results-header">
+                    <div class="results-badge">CHALLENGE COMPLETE</div>
+                    <h2 class="results-title">YOUR PERFORMANCE</h2>
+                </div>
+
+                <div class="results-score">
+                    <div class="score-massive" id="finalScore">0000</div>
+                    <div class="score-suffix">POINTS</div>
+                </div>
+
+                <div class="results-stats">
+                    <div class="stat-block">
+                        <div class="stat-number" id="correctCount">00</div>
+                        <div class="stat-label">CORRECT</div>
+                    </div>
+                    <div class="stat-divider">/</div>
+                    <div class="stat-block">
+                        <div class="stat-number" id="incorrectCount">00</div>
+                        <div class="stat-label">INCORRECT</div>
+                    </div>
+                    <div class="stat-divider">/</div>
+                    <div class="stat-block">
+                        <div class="stat-number" id="accuracyPercent">00%</div>
+                        <div class="stat-label">ACCURACY</div>
+                    </div>
+                </div>
+
+                <div class="results-message" id="resultsMessage"></div>
+
+                <div class="results-breakdown">
+                    <h3 class="breakdown-title">QUESTION BREAKDOWN</h3>
+                    <div class="breakdown-list" id="breakdownList"></div>
+                </div>
+
+                <div class="results-actions">
+                    <button class="action-button secondary" id="newCategoryButton">
+                        <span>NEW CATEGORY</span>
+                    </button>
+                    <button class="action-button primary" id="retryButton">
+                        <span>TRY AGAIN</span>
+                        <span class="button-arrow">→</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
